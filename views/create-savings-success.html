@@ -1,0 +1,53 @@
+<!-- Pantalla de Éxito -->
+<div class="form-step success-step">
+    <div class="step-content">
+        <div class="success-icon">
+            <i class="checkmark">✓</i>
+        </div>
+        <h3>¡Cuenta Creada Exitosamente!</h3>
+        <p class="success-message">Su cuenta de ahorros ha sido creada correctamente.</p>
+        
+        <div class="account-info" ng-show="vm.createdAccount">
+            <h4>Información de la Cuenta</h4>
+            <div class="info-item">
+                <span class="label">Número de Cuenta:</span>
+                <span class="value account-number">{{vm.createdAccount.accountNumber}}</span>
+            </div>
+            <div class="info-item">
+                <span class="label">Titular:</span>
+                <span class="value">{{vm.createdAccount.titularName}}</span>
+            </div>
+            <div class="info-item">
+                <span class="label">Depósito Inicial:</span>
+                <span class="value">${{vm.createdAccount.initialDeposit | number:2}}</span>
+            </div>
+            <div class="info-item">
+                <span class="label">Estado:</span>
+                <span class="value status-active">{{vm.createdAccount.status}}</span>
+            </div>
+            <div class="info-item">
+                <span class="label">Fecha de Creación:</span>
+                <span class="value">{{vm.createdAccount.createdAt | date:'dd/MM/yyyy HH:mm'}}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-actions">
+        <button type="button" 
+                class="btn btn-secondary" 
+                ng-click="vm.createAnotherAccount()">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" />
+            </svg>
+            Crear Otra Cuenta
+        </button>
+        <button type="button" 
+                class="btn btn-primary" 
+                ng-click="vm.goToUserDashboard()">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z" />
+            </svg>
+            Ir al Dashboard
+        </button>
+    </div>
+</div>

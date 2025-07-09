@@ -1,0 +1,47 @@
+<!-- Paso 2: Datos de Contacto -->
+<div class="form-step step-2">
+    <div class="step-content">
+        <h3>{{vm.getStepTitle(2)}}</h3>
+        <p class="step-description">{{vm.getStepDescription(2)}}</p>
+        
+        <div class="form-group">
+            <label for="phoneNumber">Número de Teléfono *</label>
+            <input type="tel" 
+                   id="phoneNumber" 
+                   ng-model="vm.formData.phoneNumber" 
+                   class="form-control" 
+                   placeholder="Ingrese su número de teléfono"
+                   required>
+        </div>
+
+        <div class="form-group">
+            <label for="address">Dirección *</label>
+            <textarea id="address" 
+                      ng-model="vm.formData.address" 
+                      class="form-control" 
+                      placeholder="Ingrese su dirección completa"
+                      rows="4"
+                      required></textarea>
+        </div>
+    </div>
+
+    <div class="form-actions">
+        <button type="button" 
+                class="btn btn-secondary" 
+                ng-click="vm.prevStep()">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" />
+            </svg>
+            Anterior
+        </button>
+        <button type="button" 
+                class="btn btn-primary" 
+                ng-click="vm.nextStep()" 
+                ng-disabled="!vm.isStepValid(2)">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z" />
+            </svg>
+            Siguiente
+        </button>
+    </div>
+</div>

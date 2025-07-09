@@ -1,0 +1,69 @@
+<!-- Paso 3: Depósito Inicial -->
+<div class="form-step step-3">
+    <div class="step-content">
+        <h3>{{vm.getStepTitle(3)}}</h3>
+        <p class="step-description">{{vm.getStepDescription(3)}}</p>
+        
+        <div class="form-group">
+            <label for="initialDeposit">Monto del Depósito Inicial *</label>
+            <div class="input-group">
+                <span class="input-prefix">$</span>
+                <input type="number" 
+                       id="initialDeposit" 
+                       ng-model="vm.formData.initialDeposit" 
+                       class="form-control" 
+                       placeholder="0.00"
+                       min="0"
+                       step="0.01"
+                       required>
+            </div>
+            <small class="form-text">Monto mínimo: $0.01</small>
+        </div>
+
+        <div class="form-summary">
+            <h4>Resumen de la Cuenta</h4>
+            <div class="summary-item">
+                <span class="label">Titular:</span>
+                <span class="value">{{vm.formData.titularName}}</span>
+            </div>
+            <div class="summary-item">
+                <span class="label">Identificación:</span>
+                <span class="value">{{vm.formData.identificationType}} - {{vm.formData.identificationNumber}}</span>
+            </div>
+            <div class="summary-item">
+                <span class="label">Teléfono:</span>
+                <span class="value">{{vm.formData.phoneNumber}}</span>
+            </div>
+            <div class="summary-item">
+                <span class="label">Dirección:</span>
+                <span class="value">{{vm.formData.address}}</span>
+            </div>
+            <div class="summary-item highlight">
+                <span class="label">Depósito Inicial:</span>
+                <span class="value">${{vm.formData.initialDeposit | number:2}}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-actions">
+        <button type="button" 
+                class="btn btn-secondary" 
+                ng-click="vm.prevStep()">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" />
+            </svg>
+            Anterior
+        </button>
+        <button type="button" 
+                class="btn btn-success" 
+                ng-click="vm.submitForm()" 
+                ng-disabled="!vm.isStepValid(3) || vm.isLoading">
+            <span class="spinner" ng-show="vm.isLoading"></span>
+            <svg ng-show="!vm.isLoading" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M9,20.42L2.79,14.21L5.62,11.38L9,14.77L18.88,4.88L21.71,7.71L9,20.42Z" />
+            </svg>
+            <span ng-show="vm.isLoading">Creando cuenta...</span>
+            <span ng-show="!vm.isLoading">Crear Cuenta</span>
+        </button>
+    </div>
+</div>

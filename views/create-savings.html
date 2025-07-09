@@ -1,0 +1,37 @@
+<!-- Vista para crear cuenta de ahorros -->
+<div class="create-savings-container">
+    <div class="form-header">
+        <h2>Crear Cuenta de Ahorros</h2>
+        <div class="progress-bar">
+            <div class="progress-step" ng-class="{'active': vm.currentStep >= 1, 'completed': vm.currentStep > 1}">
+                <div class="step-number">1</div>
+                <div class="step-label">Personal</div>
+            </div>
+            <div class="progress-step" ng-class="{'active': vm.currentStep >= 2, 'completed': vm.currentStep > 2}">
+                <div class="step-number">2</div>
+                <div class="step-label">Contacto</div>
+            </div>
+            <div class="progress-step" ng-class="{'active': vm.currentStep >= 3, 'completed': vm.currentStep > 3}">
+                <div class="step-number">3</div>
+                <div class="step-label">Depósito</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pantalla 1: Información Personal -->
+    <div ng-show="vm.currentStep === 1" ng-include="'views/create-savings-step1.html'"></div>
+
+    <!-- Pantalla 2: Datos de Contacto -->
+    <div ng-show="vm.currentStep === 2" ng-include="'views/create-savings-step2.html'"></div>
+
+    <!-- Pantalla 3: Depósito Inicial -->
+    <div ng-show="vm.currentStep === 3" ng-include="'views/create-savings-step3.html'"></div>
+
+    <!-- Pantalla de Éxito -->
+    <div ng-show="vm.currentStep === 4" ng-include="'views/create-savings-success.html'"></div>
+
+    <!-- Mensajes de Error -->
+    <div class="alert alert-danger" ng-show="vm.error">
+        {{vm.error}}
+    </div>
+</div>
