@@ -1,0 +1,167 @@
+<div class="card fade-in" style="max-width: 900px;">
+    <!-- Header de la página -->
+    <div style="text-align: center; margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--gris-borde);">
+        <div style="display: inline-flex; align-items: center; justify-content: center; width: 80px; height: 80px; background: var(--azul-produbanco); border-radius: 50%; margin-bottom: 1rem;">
+            <svg style="width: 40px; height: 40px; fill: white;" viewBox="0 0 24 24">
+                <path d="M12,15C12.81,15 13.5,14.7 14.11,14.11C14.7,13.5 15,12.81 15,12C15,11.19 14.7,10.5 14.11,9.89C13.5,9.3 12.81,9 12,9C11.19,9 10.5,9.3 9.89,9.89C9.3,10.5 9,11.19 9,12C9,12.81 9.3,13.5 9.89,14.11C10.5,14.7 11.19,15 12,15M21,16V10.5L19.5,9.5C19.66,8.66 19.66,7.34 19.5,6.5L21,5.5V4H19.5L18.5,2.5C17.66,2.34 16.34,2.34 15.5,2.5L14.5,4H13V5.5L12,6.5C11.16,6.34 9.84,6.34 9,6.5L8,5.5V4H6.5L5.5,2.5C4.66,2.34 3.34,2.34 2.5,2.5L1.5,4H0V5.5L1.5,6.5C1.34,7.34 1.34,8.66 1.5,9.5L0,10.5V16H1.5L2.5,17.5C3.34,17.66 4.66,17.66 5.5,17.5L6.5,16H8V14.5L9,13.5C9.84,13.66 11.16,13.66 12,13.5L13,14.5V16H14.5L15.5,17.5C16.34,17.66 17.66,17.66 18.5,17.5L19.5,16H21Z" />
+            </svg>
+        </div>
+        <h1 style="color: var(--negro-texto); font-size: 1.75rem; font-weight: 600; margin-bottom: 0.5rem;">{{vm.welcomeMessage}}</h1>
+        <p style="color: var(--gris-texto); font-size: 1rem;">Panel de Administración - Produbanco</p>
+    </div>
+    
+    <!-- Información del administrador -->
+    <div style="background: var(--gris-claro); border: 1px solid var(--gris-borde); border-radius: 8px; padding: 2rem; margin-bottom: 2rem;">
+        <h3 style="color: var(--negro-texto); margin-bottom: 1.5rem; font-size: 1.125rem; font-weight: 600;">Información de la Sesión</h3>
+        <div ng-if="vm.userInfo">
+            <div class="info-row">
+                <span class="info-label">Usuario:</span>
+                <span class="info-value">{{vm.userInfo.username}}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Email:</span>
+                <span class="info-value">{{vm.userInfo.email}}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Rol:</span>
+                <span class="info-value">Administrador</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Estado:</span>
+                <span style="color: var(--verde-produbanco); font-weight: 600; display: flex; align-items: center; gap: 0.5rem;">
+                    <span style="width: 8px; height: 8px; background: var(--verde-produbanco); border-radius: 50%; display: inline-block;"></span>
+                    Activo
+                </span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Permisos:</span>
+                <span style="color: var(--azul-produbanco); font-weight: 600; display: flex; align-items: center; gap: 0.5rem;">
+                    <span style="width: 8px; height: 8px; background: var(--azul-produbanco); border-radius: 50%; display: inline-block;"></span>
+                    Administrador Completo
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Estado del Backend -->
+    <div style="margin-bottom: 2rem; padding: 1.5rem; background: var(--azul-claro); border: 1px solid var(--azul-produbanco); border-radius: 8px;">
+        <h4 style="color: var(--azul-produbanco); margin-bottom: 1rem; font-size: 1rem; font-weight: 600; display: flex; align-items: center; gap: 0.5rem;">
+            <svg style="width: 20px; height: 20px; fill: currentColor;" viewBox="0 0 24 24">
+                <path d="M4,6H20V16H4M20,18A2,2 0 0,0 22,16V6C22,4.89 21.1,4 20,4H4C2.89,4 2,4.89 2,6V16A2,2 0 0,0 4,18H0V20H24V18H20Z" />
+            </svg>
+            Estado del Servidor
+        </h4>
+        <p style="margin: 0; color: var(--gris-texto); font-size: 0.875rem;">
+            <strong>Conectividad:</strong> <span style="color: var(--verde-produbanco); font-weight: 600;">{{vm.healthStatus || 'Verificando...'}}</span>
+        </p>
+    </div>
+
+    <!-- Herramientas de Administración -->
+    <div style="margin-bottom: 2rem;">
+        <h3 style="color: var(--negro-texto); margin-bottom: 1.5rem; font-size: 1.125rem; font-weight: 600;">Herramientas de Administración</h3>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem;">
+            <div style="background: var(--blanco); border: 1px solid var(--gris-borde); border-radius: 8px; padding: 1.5rem; transition: all 0.2s ease; cursor: pointer;" onmouseover="this.style.borderColor='var(--azul-produbanco)'" onmouseout="this.style.borderColor='var(--gris-borde)'">
+                <div style="display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; background: #E3F2FD; border-radius: 8px; margin-bottom: 1rem;">
+                    <svg style="width: 24px; height: 24px; fill: var(--azul-produbanco);" viewBox="0 0 24 24">
+                        <path d="M12,4A4,4 0 0,1 16,8C16,10.11 14.11,12 12,12C9.89,12 8,10.11 8,8C8,5.89 9.89,4 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
+                    </svg>
+                </div>
+                <h4 style="color: var(--negro-texto); font-weight: 600; margin-bottom: 0.75rem; font-size: 0.875rem;">Gestión de Usuarios</h4>
+                <ul style="margin: 0; padding-left: 1rem; color: var(--gris-texto); font-size: 0.75rem; line-height: 1.4;">
+                    <li>Crear nuevos usuarios</li>
+                    <li>Editar perfiles existentes</li>
+                    <li>Gestionar roles y permisos</li>
+                </ul>
+            </div>
+            
+            <div style="background: var(--blanco); border: 1px solid var(--gris-borde); border-radius: 8px; padding: 1.5rem; transition: all 0.2s ease; cursor: pointer;" onmouseover="this.style.borderColor='var(--azul-produbanco)'" onmouseout="this.style.borderColor='var(--gris-borde)'">
+                <div style="display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; background: #E3F2FD; border-radius: 8px; margin-bottom: 1rem;">
+                    <svg style="width: 24px; height: 24px; fill: var(--azul-produbanco);" viewBox="0 0 24 24">
+                        <path d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.21,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.21,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.68 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z" />
+                    </svg>
+                </div>
+                <h4 style="color: var(--negro-texto); font-weight: 600; margin-bottom: 0.75rem; font-size: 0.875rem;">Configuración del Sistema</h4>
+                <ul style="margin: 0; padding-left: 1rem; color: var(--gris-texto); font-size: 0.75rem; line-height: 1.4;">
+                    <li>Configuración global</li>
+                    <li>Logs del sistema</li>
+                    <li>Respaldos y restauración</li>
+                </ul>
+            </div>
+            
+            <div style="background: var(--blanco); border: 1px solid var(--gris-borde); border-radius: 8px; padding: 1.5rem; transition: all 0.2s ease; cursor: pointer;" onmouseover="this.style.borderColor='var(--azul-produbanco)'" onmouseout="this.style.borderColor='var(--gris-borde)'">
+                <div style="display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; background: #E3F2FD; border-radius: 8px; margin-bottom: 1rem;">
+                    <svg style="width: 24px; height: 24px; fill: var(--azul-produbanco);" viewBox="0 0 24 24">
+                        <path d="M22,21H2V3H4V19H6V17H10V19H12V16H16V19H18V17H22V21M16,8A2,2 0 0,0 18,6V4A2,2 0 0,0 16,2H8A2,2 0 0,0 6,4V6A2,2 0 0,0 8,8H16M8,4H16V6H8V4Z" />
+                    </svg>
+                </div>
+                <h4 style="color: var(--negro-texto); font-weight: 600; margin-bottom: 0.75rem; font-size: 0.875rem;">Reportes y Analytics</h4>
+                <ul style="margin: 0; padding-left: 1rem; color: var(--gris-texto); font-size: 0.75rem; line-height: 1.4;">
+                    <li>Actividad de usuarios</li>
+                    <li>Estadísticas del sistema</li>
+                    <li>Auditorías de seguridad</li>
+                </ul>
+            </div>
+            
+            <div style="background: var(--blanco); border: 1px solid var(--gris-borde); border-radius: 8px; padding: 1.5rem; transition: all 0.2s ease; cursor: pointer;" onmouseover="this.style.borderColor='var(--azul-produbanco)'" onmouseout="this.style.borderColor='var(--gris-borde)'">
+                <div style="display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; background: #E3F2FD; border-radius: 8px; margin-bottom: 1rem;">
+                    <svg style="width: 24px; height: 24px; fill: var(--azul-produbanco);" viewBox="0 0 24 24">
+                        <path d="M22.7,19L13.6,9.9C14.5,7.6 14,4.9 12.1,3C10.1,1 7.1,1 5.1,3C3.1,5 3.1,8 5.1,10C7,11.9 9.7,12.4 12,11.5L21.1,20.6L22.7,19M6.5,9.5C5.1,8.1 5.1,5.9 6.5,4.5C7.9,3.1 10.1,3.1 11.5,4.5C12.9,5.9 12.9,8.1 11.5,9.5C10.1,10.9 7.9,10.9 6.5,9.5Z" />
+                    </svg>
+                </div>
+                <h4 style="color: var(--negro-texto); font-weight: 600; margin-bottom: 0.75rem; font-size: 0.875rem;">Herramientas de Diagnóstico</h4>
+                <ul style="margin: 0; padding-left: 1rem; color: var(--gris-texto); font-size: 0.75rem; line-height: 1.4;">
+                    <li>Mantenimiento del sistema</li>
+                    <li>Diagnósticos técnicos</li>
+                    <li>Utilidades avanzadas</li>
+                </ul>
+            </div>
+        </div>
+                </p>
+            </div>
+        </div>
+        
+        <!-- Acciones administrativas -->
+        <div style="margin-top: 2rem; padding: 1.5rem; background: var(--gris-claro); border: 1px solid var(--gris-borde); border-radius: 8px;">
+            <h4 style="color: var(--negro-texto); margin-bottom: 1rem; font-size: 1rem; font-weight: 600;">Diagnóstico del Sistema</h4>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem;">
+                <button 
+                    class="btn btn-primary" 
+                    ng-click="vm.testAdminAccess()"
+                    ng-disabled="vm.isTestingAccess"
+                    style="width: auto;">
+                    <span ng-if="!vm.isTestingAccess">Probar acceso administrativo</span>
+                    <span ng-if="vm.isTestingAccess">
+                        <span class="spinner"></span>
+                        Probando...
+                    </span>
+                </button>
+                
+                <button 
+                    class="btn btn-secondary" 
+                    ng-click="vm.checkBackendHealth()"
+                    style="width: auto;">
+                    Verificar estado del servidor
+                </button>
+            </div>
+            
+            <div ng-if="vm.testMessage" style="padding: 1rem; background-color: var(--verde-claro); border-radius: 4px; color: var(--verde-oscuro); border: 1px solid var(--verde-produbanco);">
+                <strong>Resultado del diagnóstico:</strong><br>
+                {{vm.testMessage}}
+            </div>
+        </div>
+    </div>
+
+    <!-- Panel de estado -->
+    <div style="margin-top: 2rem; padding: 1.5rem; background: var(--azul-produbanco); color: var(--blanco); border-radius: 8px; text-align: center;">
+        <h4 style="margin-bottom: 0.5rem; font-size: 1rem; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+            <svg style="width: 20px; height: 20px; fill: currentColor;" viewBox="0 0 24 24">
+                <path d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M12,7C13.4,7 14.8,8.6 14.8,10V11.5C15.4,11.5 16,12.1 16,12.7V16.2C16,16.8 15.4,17.3 14.8,17.3H9.2C8.6,17.3 8,16.8 8,16.2V12.8C8,12.2 8.6,11.7 9.2,11.7V10C9.2,8.6 10.6,7 12,7M12,8.2C11.2,8.2 10.5,8.7 10.5,9.5V11.5H13.5V9.5C13.5,8.7 12.8,8.2 12,8.2Z" />
+            </svg>
+            Acceso Administrativo Activo
+        </h4>
+        <p style="margin: 0; opacity: 0.9; font-size: 0.875rem;">
+            Panel de administración de Produbanco - Usar con responsabilidad
+        </p>
+    </div>
+</div>
